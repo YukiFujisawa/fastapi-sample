@@ -35,7 +35,7 @@ app = FastAPI()
 
 
 class Booking(BaseModel):
-    id: str
+    id: int
     user_id: str
     room_id: str
     reserved_num: int
@@ -44,12 +44,12 @@ class Booking(BaseModel):
 
 
 class User(BaseModel):
-    id: str
+    id: int
     user_name: str = Field(max_length=12)
 
 
 class Room(BaseModel):
-    id: str
+    id: int
     room_name: str
     capacity: int = Field(max_length=12)
 
