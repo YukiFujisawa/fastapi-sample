@@ -62,9 +62,15 @@ def create_booking(
     start_datetime: str,
     end_datetime: str,
 ):
+    user = User.objects.get(id=user_id)
+    room = Room.objects.get(id=room_id)
+
+    print(user)
+    print(room)
+
     booking = Booking(
-        user_id=user_id,
-        room_id=room_id,
+        user_id=user.id,
+        room_id=room.id,
         reserved_num=reserved_num,
         start_datetime=start_datetime,
         end_datetime=end_datetime,

@@ -27,8 +27,8 @@ class Room(models.Model):
 
 class Booking(models.Model):
     id = models.AutoField(primary_key=True)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    room_id = models.ForeignKey(Room, on_delete=models.CASCADE)
+    user_id = models.IntegerField()
+    room_id = models.IntegerField()
     reserved_num = models.IntegerField()
     start_datetime = models.DateTimeField()
     end_datetime = models.DateTimeField()
