@@ -26,8 +26,8 @@ from db.models import *
 """ Replace the code below with your own """
 
 # Seed a few users in the database
-User.objects.create(name="Dan")
-User.objects.create(name="Robert")
+User.objects.create(user_name="Dan")
+User.objects.create(user_name="Robert")
 
 for u in User.objects.all():
-    print(f"ID: {u.id} \tUsername: {u.name}")
+    print(f"ID: {u.id} \tUsername: {u.user_name}")
