@@ -45,3 +45,20 @@
   - 登録
   - 一覧の取得
 
+## DB周り
+
+```
+python manage.py makemigrations db;
+python manage.py migrate
+```
+
+1. makemigrations
+    - マイグレーションファイルを作成する
+2. migrateはモデルをデータベースに反映させる
+    - マイグレーションファイルを元にDatabaseを変更する
+
+### 参考
+
+- [Django ORM Standalone](https://github.com/dancaron/Django-ORM)
+- [MakemigrationsとMigrateについて](https://qiita.com/frosty/items/8c715a53d7920c9cd1eb)
+- [Django Models](https://docs.djangoproject.com/en/5.0/topics/db/models/)
