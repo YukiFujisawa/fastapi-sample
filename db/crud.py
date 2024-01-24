@@ -65,9 +65,6 @@ def create_booking(
     user = User.objects.get(id=user_id)
     room = Room.objects.get(id=room_id)
 
-    print(user)
-    print(room)
-
     booking = Booking(
         user_id=user.id,
         room_id=room.id,
