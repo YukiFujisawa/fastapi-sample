@@ -1,58 +1,10 @@
-############################################################################
-## Django ORM Standalone Python Template
-############################################################################
-""" Here we'll import the parts of Django we need. It's recommended to leave
-these settings as is, and skip to START OF APPLICATION section below """
-
-# Turn off bytecode generation
-import sys
-
-sys.dont_write_bytecode = True
-
-# Django specific settings
-import os
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
-import django
-
-django.setup()
-
-# Import your models for use in your script
-from db.models import *
-
-############################################################################
-## START OF APPLICATION
-############################################################################
-""" Replace the code below with your own """
-
-from typing import List, Optional
+from typing import List
 from fastapi import FastAPI
-from datetime import datetime
-from pydantic import BaseModel, Field
+from db import crud, schemas
+import json
 
-
-app = FastAPI()
-
-
-class Booking(BaseModel):
-    id: int
-    user_id: str
-    room_id: str
-    reserved_num: int
-    start_datetime: datetime
-    end_datetime: str
-
-
-class User(BaseModel):
-    id: int
-    user_name: str = Field(max_length=12)
-
-
-class Room(BaseModel):
-    id: int
-    room_name: str
-    capacity: int = Field(max_length=12)
-
+# from db.schemas import User, Room, Booking
+# from db.crud import create_user, create_room, create_booking
 
 app = FastAPI()
 
@@ -62,16 +14,43 @@ def index():
     return {"status": "OK"}
 
 
-@app.post("/users")
-def create_user(user: User):
-    return {"user": user}
+@app.get("/users", response_model=List[schemas.User])
+def index_users():
+    users = crud.get_users()
+    return users
 
 
-@app.post("/rooms")
-def create_room(room: Room):
-    return {"room": room}
+@app.get("/rooms", response_model=List[schemas.Room])
+def index_rooms():
+    rooms = crud.get_rooms()
+    return rooms
 
 
-@app.post("/bookings")
-def create_booking(booking: Booking):
-    return {"booking": booking}
+@app.get("/bookings", response_model=List[schemas.Booking])
+def index_bookings():
+    bookings = crud.get_bookings()
+    return bookings
+
+
+@app.post("/users", response_model=schemas.User)
+def create_users(user: schemas.User):
+    user = crud.create_user(user_name=user.user_name)
+    return user
+
+
+@app.post("/rooms", response_model=schemas.Room)
+def create_rooms(room: schemas.Room):
+    room = crud.create_room(room_name=room.room_name, capacity=room.capacity)
+    return room
+
+
+@app.post("/bookings", response_model=schemas.Booking)
+def create_bookings(booking: schemas.Booking):
+    booking = crud.create_booking(
+        user_id=booking.user_id,
+        room_id=booking.room_id,
+        reserved_num=booking.reserved_num,
+        start_datetime=booking.start_datetime,
+        end_datetime=booking.end_datetime,
+    )
+    return booking
