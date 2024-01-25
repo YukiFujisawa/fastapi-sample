@@ -1,6 +1,4 @@
-# fastapi-sample
-
-予約会議システムAPI
+# 予約会議システムAPI
 
 ## DB設計
 
