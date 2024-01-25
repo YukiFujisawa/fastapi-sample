@@ -26,7 +26,7 @@
     - rooms.capacityを上限とする
   - start_datetime: datetime
     - 開始時刻
-    - 15分刻み
+    - 30分刻み
     - 09:00〜20:00
   - end_datetime: datetime
     - 終了時刻
@@ -36,14 +36,17 @@
 ## 機能
 
 - users(ユーザー)
+  - 一覧  
   - 登録
-  - 取得
+  - 詳細
 - rooms(会議室)
+  - 一覧   
   - 登録
-  - 取得
+  - 詳細
 - bookings(予約)
+  - 一覧  
   - 登録
-  - 一覧の取得
+  - 詳細
 
 ## DB周り
 
