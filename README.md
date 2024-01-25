@@ -1,5 +1,7 @@
 # fastapi-sample
 
+予約会議システムAPI
+
 ## DB設計
 
 - users
